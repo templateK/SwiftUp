@@ -11,7 +11,6 @@
 		38B954DC22A58FE300A9D6E1 /* HIToolbox.h in Headers */ = {isa = PBXBuildFile; fileRef = 38B954DA22A58FE300A9D6E1 /* HIToolbox.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38B954E322A5904400A9D6E1 /* HIToolbox.framework in Resources */ = {isa = PBXBuildFile; fileRef = 38B954D822A58FE300A9D6E1 /* HIToolbox.framework */; };
 		38B954E822A591CE00A9D6E1 /* TextInputSources.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38B954E722A591CE00A9D6E1 /* TextInputSources.swift */; };
-		38B954EA22A595B700A9D6E1 /* HIToolbox.h in Sources */ = {isa = PBXBuildFile; fileRef = 38B954E922A595B700A9D6E1 /* HIToolbox.h */; };
 		38B954EC22A5962600A9D6E1 /* HIToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B954D822A58FE300A9D6E1 /* HIToolbox.framework */; };
 		38B954EE22A59A0C00A9D6E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B954ED22A59A0B00A9D6E1 /* Carbon.framework */; };
 		38B954EF22A59D7C00A9D6E1 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38B954ED22A59A0B00A9D6E1 /* Carbon.framework */; };
@@ -35,7 +34,7 @@
 		38B954DA22A58FE300A9D6E1 /* HIToolbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIToolbox.h; sourceTree = "<group>"; };
 		38B954DB22A58FE300A9D6E1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		38B954E722A591CE00A9D6E1 /* TextInputSources.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextInputSources.swift; sourceTree = "<group>"; };
-		38B954E922A595B700A9D6E1 /* HIToolbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = HIToolbox.h; path = ../HIToolbox/HIToolbox.h; sourceTree = "<group>"; };
+		38B954E922A595B700A9D6E1 /* HIToolbox.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HIToolbox.h; sourceTree = "<group>"; };
 		38B954ED22A59A0B00A9D6E1 /* Carbon.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Carbon.framework; path = System/Library/Frameworks/Carbon.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -84,7 +83,6 @@
 			isa = PBXGroup;
 			children = (
 				38B954C622A58D8F00A9D6E1 /* SwiftCarbon.h */,
-				38B954E922A595B700A9D6E1 /* HIToolbox.h */,
 				38B954C722A58D8F00A9D6E1 /* Info.plist */,
 			);
 			path = SwiftCarbon;
@@ -103,6 +101,7 @@
 			isa = PBXGroup;
 			children = (
 				38B954E722A591CE00A9D6E1 /* TextInputSources.swift */,
+				38B954E922A595B700A9D6E1 /* HIToolbox.h */,
 			);
 			path = HIToolbox;
 			sourceTree = "<group>";
@@ -233,7 +232,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				38B954EA22A595B700A9D6E1 /* HIToolbox.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

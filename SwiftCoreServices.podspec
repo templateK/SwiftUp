@@ -1,10 +1,10 @@
 Pod::Spec.new do |s|
-  s.name             = 'SwiftUp'
+  s.name             = 'SwiftCoreServices'
   s.version          = '0.1.0'
-  s.summary          = 'Swift shallow wrapper of Apple SDK.'
+  s.summary          = 'Swift shallow wrapper of CoreServices.'
 
   s.description      = <<-DESC
-Swift shallow wrapper of Apple SDK.
+Swift shallow wrapper of CoreServices.
 Apple starts to provide Swift API for their libraries, but it is slow and
 imperfect. These projects fill the gap.
                        DESC
@@ -17,9 +17,9 @@ imperfect. These projects fill the gap.
   s.platform = :osx
   s.osx.deployment_target = "10.10"
 
-  s.dependency "SwiftIOKit", "~> 0.1.0"
-  s.dependency "SwiftCarbon", "~> 0.1.0"
-  s.dependency "SwiftCoreServices", "~> 0.1.0"
+  s.source_files = 'CoreServices/SwiftCoreServices/*.swift'
+
+  s.frameworks = 'Foundation', 'CoreServices'
 
   s.swift_versions = '5.0'
 end
