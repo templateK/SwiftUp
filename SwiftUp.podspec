@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftUp'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'Swift shallow wrapper of Apple SDK.'
 
   s.description      = <<-DESC
@@ -19,7 +19,7 @@ imperfect. These projects fill the gap.
 
   s.dependency "SwiftIOKit", "~> 0.1.0"
   s.dependency "SwiftCarbon", "~> 0.1.0"
-  s.dependency "SwiftCoreServices", "~> 0.1.0"
+  s.dependency "SwiftCoreServices", "~> 0.1.1"
 
   s.swift_versions = '5.0'
 end
