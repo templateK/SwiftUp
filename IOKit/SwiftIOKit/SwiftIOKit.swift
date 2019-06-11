@@ -36,6 +36,7 @@ public class SIOConnect {
         public static let activityDisplayOn = Selector(rawValue: Int32(kIOHIDActivityDisplayOn))
     }
 
+    @discardableResult
     public func close() -> Result<Void, SIOError> {
         let kr = IOServiceClose(rawValue)
         guard kr == KERN_SUCCESS else {
@@ -53,6 +54,7 @@ public class SIOConnect {
         return .success(state)
     }
 
+    @discardableResult
     public func setState(selector: Selector, state: UInt32) -> Result<Void, SIOError> {
         let kr = IOHIDSetStateForSelector(rawValue, selector.rawValue, state)
         if kr != KERN_SUCCESS {
@@ -70,6 +72,7 @@ public class SIOConnect {
         return .success(state)
     }
 
+    @discardableResult
     public func setModifierLock(selector: Selector, state: Bool) -> Result<Void, SIOError> {
         let kr = IOHIDSetModifierLockState(rawValue, selector.rawValue, state)
         if kr != KERN_SUCCESS {

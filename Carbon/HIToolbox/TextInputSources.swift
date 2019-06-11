@@ -61,21 +61,25 @@ public extension TISInputSource {
         return unmanaged.takeRetainedValue() as? [TISInputSource]
     }
 
+    @discardableResult
     func select() -> Result<Void, STISError> {
         let status = TISSelectInputSource(self)
         return _mapError(status: status)
     }
 
+    @discardableResult
     func deselect() -> Result<Void, STISError> {
         let status = TISDeselectInputSource(self)
         return _mapError(status: status)
     }
 
+    @discardableResult
     func enable() -> Result<Void, STISError> {
         let status = TISEnableInputSource(self)
         return _mapError(status: status)
     }
 
+    @discardableResult
     func disable() -> Result<Void, STISError> {
         let status = TISDisableInputSource(self)
         return _mapError(status: status)
