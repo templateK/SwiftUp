@@ -146,6 +146,108 @@ public extension IOHIDValue {
     }
 }
 
+public extension IOHIDElement {
+    class func create(dictionary: NSDictionary) -> IOHIDElement {
+        return IOHIDElementCreateWithDictionary(kCFAllocatorDefault, dictionary)
+    }
+
+    var device: IOHIDDevice {
+        return IOHIDElementGetDevice(self)
+    }
+
+    var parent: IOHIDElement? {
+        return IOHIDElementGetParent(self)
+    }
+
+    var children: NSArray? {
+        return IOHIDElementGetChildren(self)
+    }
+
+    func attach(_ toAttach: IOHIDElement) {
+        IOHIDElementAttach(self, toAttach)
+    }
+
+    func detach(_ toDetach: IOHIDElement) {
+        IOHIDElementAttach(self, toDetach)
+    }
+
+    func attached() -> NSArray? {
+        return IOHIDElementCopyAttached(self)
+    }
+
+    var cookie: IOHIDElementCookie {
+        return IOHIDElementGetCookie(self)
+    }
+
+    var type: IOHIDElementType {
+        return IOHIDElementGetType(self)
+    }
+
+    var collectionType: IOHIDElementCollectionType {
+        return IOHIDElementGetCollectionType(self)
+    }
+
+    var usagePage: UInt32 {
+        return IOHIDElementGetUsagePage(self)
+    }
+
+    var usage: UInt32 {
+        return IOHIDElementGetUsage(self)
+    }
+
+    var isVirtual: Bool {
+        return IOHIDElementIsVirtual(self)
+    }
+
+    var isRelative: Bool {
+        return IOHIDElementIsRelative(self)
+    }
+
+    var isWrapping: Bool {
+        return IOHIDElementIsWrapping(self)
+    }
+
+    var isArray: Bool {
+        return IOHIDElementIsArray(self)
+    }
+
+    var isNonLinear: Bool {
+        return IOHIDElementIsNonLinear(self)
+    }
+
+    var hasPreferredState: Bool {
+        return IOHIDElementHasPreferredState(self)
+    }
+
+    var hasNullState: Bool {
+        return IOHIDElementHasNullState(self)
+    }
+
+    var name: NSString {
+        return IOHIDElementGetName(self)
+    }
+
+    var reportID: UInt32 {
+        return IOHIDElementGetReportID(self)
+    }
+
+    var reportSize: UInt32 {
+        return IOHIDElementGetReportSize(self)
+    }
+
+    var reportCount: UInt32 {
+        return IOHIDElementGetReportCount(self)
+    }
+
+    var unit: UInt32 {
+        return IOHIDElementGetUnit(self)
+    }
+
+    var unitExponent: UInt32 {
+        return IOHIDElementGetUnitExponent(self)
+    }
+}
+
 public extension IOHIDManager {
     class func create(options: IOOptionBits) -> IOHIDManager {
         return IOHIDManagerCreate(kCFAllocatorDefault, options)
