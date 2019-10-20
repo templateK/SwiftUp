@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'SwiftIOKit'
-  s.version          = '0.1.0'
+  s.version          = '0.1.2'
   s.summary          = 'Swift shallow wrapper of IOKit.'
 
   s.description      = <<-DESC
