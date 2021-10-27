@@ -9,106 +9,110 @@
 import Carbon.HIToolbox
 
 public enum STISError: Error {
-    case status(OSStatus)
+  case status(OSStatus)
 }
 
 public class STISProperty {
-    public static let InputSourceIsEnabled = kTISPropertyInputSourceIsEnabled as String
-    public static let InputSourceID = kTISPropertyInputSourceID as String
-    public static let LocalizedName = kTISPropertyLocalizedName as String
+  public static let InputSourceIsEnabled = kTISPropertyInputSourceIsEnabled as String
+  public static let InputSourceID = kTISPropertyInputSourceID as String
+  public static let LocalizedName = kTISPropertyLocalizedName as String
 }
 
-public extension TISInputSource {
-    private class func _takeInputSource(fromUnmanaged unmanaged: Unmanaged<TISInputSource>?) -> TISInputSource? {
-        guard let unmanaged = unmanaged else {
-            return nil
-        }
-        return unmanaged.takeRetainedValue()
+extension TISInputSource {
+  private class func _takeInputSource(fromUnmanaged unmanaged: Unmanaged<TISInputSource>?)
+    -> TISInputSource?
+  {
+    guard let unmanaged = unmanaged else {
+      return nil
     }
+    return unmanaged.takeRetainedValue()
+  }
 
-    class func currentKeyboard() -> TISInputSource? {
-        return _takeInputSource(fromUnmanaged: TISCopyCurrentKeyboardInputSource())
-    }
+  public class func currentKeyboard() -> TISInputSource? {
+    return _takeInputSource(fromUnmanaged: TISCopyCurrentKeyboardInputSource())
+  }
 
-    class func currentKeyboardLayout() -> TISInputSource? {
-        return _takeInputSource(fromUnmanaged: TISCopyCurrentKeyboardLayoutInputSource())
-    }
+  public class func currentKeyboardLayout() -> TISInputSource? {
+    return _takeInputSource(fromUnmanaged: TISCopyCurrentKeyboardLayoutInputSource())
+  }
 
-    class func currentASCIICapableKeyboard() -> TISInputSource? {
-        return _takeInputSource(fromUnmanaged: TISCopyCurrentASCIICapableKeyboardInputSource())
-    }
+  public class func currentASCIICapableKeyboard() -> TISInputSource? {
+    return _takeInputSource(fromUnmanaged: TISCopyCurrentASCIICapableKeyboardInputSource())
+  }
 
-    class func currentASCIICapableKeyboardLayout() -> TISInputSource? {
-        return _takeInputSource(fromUnmanaged: TISCopyCurrentASCIICapableKeyboardLayoutInputSource())
-    }
+  public class func currentASCIICapableKeyboardLayout() -> TISInputSource? {
+    return _takeInputSource(fromUnmanaged: TISCopyCurrentASCIICapableKeyboardLayoutInputSource())
+  }
 
-    class func register(location: URL) -> Result<Void, STISError> {
-        let status = TISRegisterInputSource(location as CFURL)
-        return _mapError(status: status)
-    }
+  public class func register(location: URL) -> Result<Void, STISError> {
+    let status = TISRegisterInputSource(location as CFURL)
+    return _mapError(status: status)
+  }
 
-    class func sources(withProperties properties: NSDictionary, includeAllInstalled: Bool) -> [TISInputSource]? {
-        guard let unmanaged = TISCreateInputSourceList(properties, includeAllInstalled) else {
-            return nil
-        }
-        return unmanaged.takeRetainedValue() as? [TISInputSource]
+  public class func sources(withProperties properties: NSDictionary, includeAllInstalled: Bool)
+    -> [TISInputSource]?
+  {
+    guard let unmanaged = TISCreateInputSourceList(properties, includeAllInstalled) else {
+      return nil
     }
+    return unmanaged.takeRetainedValue() as? [TISInputSource]
+  }
 
-    class func ASCIICapableSources() -> [TISInputSource]? {
-        guard let unmanaged = TISCreateASCIICapableInputSourceList() else {
-            return nil
-        }
-        return unmanaged.takeRetainedValue() as? [TISInputSource]
+  public class func ASCIICapableSources() -> [TISInputSource]? {
+    guard let unmanaged = TISCreateASCIICapableInputSourceList() else {
+      return nil
     }
+    return unmanaged.takeRetainedValue() as? [TISInputSource]
+  }
 
-    @discardableResult
-    func select() -> Result<Void, STISError> {
-        let status = TISSelectInputSource(self)
-        return _mapError(status: status)
-    }
+  @discardableResult
+  public func select() -> Result<Void, STISError> {
+    let status = TISSelectInputSource(self)
+    return _mapError(status: status)
+  }
 
-    @discardableResult
-    func deselect() -> Result<Void, STISError> {
-        let status = TISDeselectInputSource(self)
-        return _mapError(status: status)
-    }
+  @discardableResult
+  public func deselect() -> Result<Void, STISError> {
+    let status = TISDeselectInputSource(self)
+    return _mapError(status: status)
+  }
 
-    @discardableResult
-    func enable() -> Result<Void, STISError> {
-        let status = TISEnableInputSource(self)
-        return _mapError(status: status)
-    }
+  @discardableResult
+  public func enable() -> Result<Void, STISError> {
+    let status = TISEnableInputSource(self)
+    return _mapError(status: status)
+  }
 
-    @discardableResult
-    func disable() -> Result<Void, STISError> {
-        let status = TISDisableInputSource(self)
-        return _mapError(status: status)
-    }
+  @discardableResult
+  public func disable() -> Result<Void, STISError> {
+    let status = TISDisableInputSource(self)
+    return _mapError(status: status)
+  }
 
-    func property(forKey key: String) -> Any? {
-        guard let unmanaged = TISGetInputSourceProperty(self, key as CFString) else {
-            return nil
-        }
-        return Unmanaged<AnyObject>.fromOpaque(unmanaged).takeUnretainedValue()
+  public func property(forKey key: String) -> Any? {
+    guard let unmanaged = TISGetInputSourceProperty(self, key as CFString) else {
+      return nil
     }
+    return Unmanaged<AnyObject>.fromOpaque(unmanaged).takeUnretainedValue()
+  }
 
-    var enabled: Bool {
-        return property(forKey: STISProperty.InputSourceIsEnabled) as! Bool
-    }
+  public var enabled: Bool {
+    return property(forKey: STISProperty.InputSourceIsEnabled) as! Bool
+  }
 
-    var identifier: String {
-        return property(forKey: STISProperty.InputSourceID) as! String
-    }
+  public var identifier: String {
+    return property(forKey: STISProperty.InputSourceID) as! String
+  }
 
-    var localizedName: String {
-        return property(forKey: STISProperty.LocalizedName) as! String
-    }
+  public var localizedName: String {
+    return property(forKey: STISProperty.LocalizedName) as! String
+  }
 }
 
 private func _mapError(status: OSStatus) -> Result<Void, STISError> {
-    if status == 0 {
-        return .success(())
-    } else {
-        return .failure(STISError.status(status))
-    }
+  if status == 0 {
+    return .success(())
+  } else {
+    return .failure(STISError.status(status))
+  }
 }
