@@ -6,6 +6,7 @@
 //  Copyright © 2019 Jeong YunWon. All rights reserved.
 //
 
+import Foundation
 import CoreServices
 
 private let _bridgeCallback: FSEventStreamCallback = {
